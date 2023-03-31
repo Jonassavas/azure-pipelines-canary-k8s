@@ -14,15 +14,15 @@ variables:
 stages:
 - stage: Build
   pool: 
-    name: Default
-    demands:
-      - agent.name -equals JONAS-SLAPTOP
+
   displayName: Build stage
   jobs:  
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      name: Default
+      demands:
+      - agent.name -equals JONAS-SLAPTOP
     steps:
     - task: Docker@2
       displayName: Build and push image
@@ -40,10 +40,6 @@ stages:
     - publish: misc
       artifact: misc
 - stage: DeployCanary
-  pool: 
-    name: Default
-    demands:
-      - agent.name -equals JONAS-SLAPTOP
   displayName: Deploy canary
   dependsOn: Build
   condition: succeeded()
@@ -52,7 +48,9 @@ stages:
   - deployment: Deploycanary
     displayName: Deploy canary
     pool:
-      vmImage: ubuntu-latest
+      name: Default
+      demands:
+      - agent.name -equals JONAS-SLAPTOP
     environment: 'akscanary.canarydemo'
     strategy:
       runOnce:
