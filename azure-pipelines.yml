@@ -2,14 +2,13 @@ trigger:
 - main
 
 pool:
-  name: Default
   vmImage: ubuntu-latest
 
 variables:
   imageName: azure-pipelines-canary-k8s
   dockerRegistryServiceConnection: azure-pipelines-canary-k8s #replace with name of your Docker registry service connection
   imageRepository: 'azure-pipelines-canary-k8s'
-  containerRegistry: example.azurecr.io #replace with the name of your container registry, Should be in the format example.azurecr.io
+  containerRegistry: jspndemo.azurecr.io #replace with the name of your container registry, Should be in the format example.azurecr.io
   tag: '$(Build.BuildId)'
 
 stages:
