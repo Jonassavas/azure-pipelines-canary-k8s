@@ -13,8 +13,6 @@ variables:
 
 stages:
 - stage: Build
-  pool: 
-
   displayName: Build stage
   jobs:  
   - job: Build
