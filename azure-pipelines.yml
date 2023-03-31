@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  #name: Default
+  name: Default
   vmImage: ubuntu-latest
 
 variables:
@@ -19,7 +19,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      #name: Default
+      name: Default
       vmImage: ubuntu-latest
     steps:
     - task: Docker@2
@@ -46,7 +46,7 @@ stages:
   - deployment: Deploycanary
     displayName: Deploy canary
     pool:
-      #name: Default
+      name: Default
       vmImage: ubuntu-latest
     environment: 'akscanary.canarydemo'
     strategy:
@@ -87,7 +87,7 @@ stages:
   - deployment: PromoteCanary
     displayName: Promote Canary
     pool: 
-      #name: Default
+      name: Default
       vmImage: ubuntu-latest
     environment: 'akspromote.canarydemo'
     strategy:
@@ -111,7 +111,7 @@ stages:
   - deployment: RejectCanary
     displayName: Reject Canary
     pool: 
-      #name: Default
+      name: Default
       vmImage: ubuntu-latest
     environment: 'akscanary.canarydemo'
     strategy:
