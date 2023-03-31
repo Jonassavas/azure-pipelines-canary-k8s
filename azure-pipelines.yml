@@ -13,6 +13,10 @@ variables:
 
 stages:
 - stage: Build
+  pool: 
+    name: Default
+    demands:
+      - agent.name -equals JONAS-SLAPTOP
   displayName: Build stage
   jobs:  
   - job: Build
@@ -36,6 +40,10 @@ stages:
     - publish: misc
       artifact: misc
 - stage: DeployCanary
+  pool: 
+    name: Default
+    demands:
+      - agent.name -equals JONAS-SLAPTOP
   displayName: Deploy canary
   dependsOn: Build
   condition: succeeded()
